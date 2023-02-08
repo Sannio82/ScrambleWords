@@ -1,0 +1,55 @@
+package com.example.scramblegame.ui.theme
+
+import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import com.example.scramblegame.allWords
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+
+class GameViewModel: ViewModel() {
+
+    var userGuess by mutableStateOf("")
+    private set
+
+    private val _uiState = MutableStateFlow(GameUIState())
+
+    val uiState: StateFlow<GameUIState> = _uiState.asStateFlow()
+
+    private lateinit var currentWord: String
+    private var usedWords: MutableSet<String> = mutableSetOf()
+
+    init {
+        resetGame()
+    }
+
+    private fun pickRandomWordAndShuffle() : String {
+        currentWord = allWords.random()
+        if(usedWords.contains(currentWord)) {
+            return pickRandomWordAndShuffle()
+        } else {
+            usedWords.add(currentWord)
+            return shuffleCurrentWord(currentWord)
+        }
+    }
+
+    private fun shuffleCurrentWord(word: String): String {
+        val tempWord = word.toCharArray()
+        tempWord.shuffle()
+        while (String(tempWord).equals(word)) {
+            tempWord.shuffle()
+        }
+        return String(tempWord)
+    }
+
+    fun resetGame() {
+        usedWords.clear()
+        _uiState.value = GameUIState(currentScrambledWord = pickRandomWordAndShuffle())
+    }
+
+    fun updateUserGuess(guessedWord: String) {
+        userGuess = guessedWord
+    }
+}
