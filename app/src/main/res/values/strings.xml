@@ -11,6 +11,7 @@
     <string name="you_scored">You scored</string>
     <string name="exit">Exit</string>
     <string name="play_again">Play again</string>
+    <string name="wrong_word">Sorry, wrong word!</string>
 
 
 </resources>
