@@ -91,7 +91,7 @@ fun GameScreen(
                     .fillMaxWidth()
                     .weight(1f)
                     .padding(start = 8.dp),
-                onClick = { }
+                onClick = {gameViewModel.checkUserGuess() }
             ) {
                 Text(stringResource(R.string.submit))
             }
