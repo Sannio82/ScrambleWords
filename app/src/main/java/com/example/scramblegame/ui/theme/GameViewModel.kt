@@ -1,5 +1,6 @@
 package com.example.scramblegame.ui.theme
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -60,16 +61,15 @@ class GameViewModel: ViewModel() {
 
         if (userGuess.equals(currentWord, ignoreCase = true)) {
             val updatedScore = _uiState.value.score.plus(SCORE_INCREASE)
-           // val updatedScore = _uiState.value.score +1
             updateGameState(updatedScore)
-            print("updated score is: $updatedScore")
+            Log.d("print updated score", updatedScore.toString())
         } else {
             _uiState.update { currentState ->
                 currentState.copy(isGuessedWordWrong = true)
 
             }
-            updateUserGuess("")
         }
+        updateUserGuess("")
     }
 
     private fun updateGameState(updatedScore: Int) {
