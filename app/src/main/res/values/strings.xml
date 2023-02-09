@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">ScrambleGame</string>
+
+    <string name="skip">Skip</string>
+    <string name="submit">Submit</string>
+    <string name="word_count">Word count</string>
+    <string name="score">Score</string>
+    <string name="instructions">Instructions</string>
+    <string name="enter_your_word">Enter your word</string>
+    <string name="congratulations">Congratulations</string>
+    <string name="you_scored">You scored</string>
+    <string name="exit">Exit</string>
+    <string name="play_again">Play again</string>
+    <string name="wrong_word">Sorry, wrong word!</string>
+
+
 </resources>
